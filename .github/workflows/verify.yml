@@ -1,0 +1,32 @@
+name: RTL verification
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install simulators
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog verilator python3-venv
+      - name: Check SystemVerilog
+        run: verilator --lint-only -Wall --top-module rv32_soc rtl/rv32_alu.sv rtl/rv32_regfile.sv rtl/rv32_decode.sv rtl/rv32_dcache.sv rtl/rv32_core.sv rtl/rv32_soc.sv
+      - name: Install cocotb
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install -r requirements.txt
+      - name: Compare RTL with Python reference model
+        run: .venv/bin/python verification/run.py --sim icarus
+      - name: Upload test report and trace
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rtl-verification
+          path: |
+            sim_build/icarus/results.xml
+            artifacts/metrics_icarus.json
+            artifacts/pipeline_trace.csv

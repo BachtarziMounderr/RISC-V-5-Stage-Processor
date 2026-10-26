@@ -1,0 +1,42 @@
+{
+  "arithmetic_and_forwarding": {
+    "cycles": 26,
+    "retired": 22,
+    "stalls": 0,
+    "flushes": 0,
+    "cache_misses": 0,
+    "reference_instructions": 22
+  },
+  "loads_stores_cache_and_load_use": {
+    "cycles": 21,
+    "retired": 10,
+    "stalls": 7,
+    "flushes": 0,
+    "cache_misses": 4,
+    "reference_instructions": 10
+  },
+  "control_flow_and_flush": {
+    "cycles": 43,
+    "retired": 21,
+    "stalls": 0,
+    "flushes": 9,
+    "cache_misses": 0,
+    "reference_instructions": 21
+  },
+  "seeded_mixed_program": {
+    "cycles": 105,
+    "retired": 82,
+    "stalls": 19,
+    "flushes": 0,
+    "cache_misses": 17,
+    "reference_instructions": 82
+  },
+  "sum_1_to_10_example": {
+    "cycles": 58,
+    "retired": 35,
+    "stalls": 1,
+    "flushes": 9,
+    "cache_misses": 1,
+    "reference_instructions": 35
+  }
+}
